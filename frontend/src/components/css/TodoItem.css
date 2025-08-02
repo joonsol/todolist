@@ -1,0 +1,100 @@
+/* 아이템 전체 레이아웃 */
+.TodoItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* 좌측 체크박스 */
+.TodoItem > input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+/* 일반 보기 모드 레이아웃 */
+.TodoItem .content-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1 1 auto;  /* 가운데 영역이 넓게 */
+  min-width: 0;    /* 긴 텍스트 줄바꿈 허용 */
+}
+
+.TodoItem .content {
+  flex: 1 1 auto;
+  word-break: break-word;
+}
+
+.TodoItem .date {
+  flex: 0 0 auto;
+  font-size: 14px;
+  color: gray;
+  white-space: nowrap;
+}
+
+/* 버튼 공통 */
+.TodoItem .btn-wrap {
+  display: flex;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.TodoItem button {
+  cursor: pointer;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  color: #fff;
+}
+
+.updateBtn { background-color: rgb(80, 223, 180); }
+.deleteBtn { background-color: rgb(255, 121, 112); }
+
+/* 편집 모드 레이아웃 */
+.TodoItem .edit-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* 편집 인풋 */
+.TodoItem .edit-input {
+  flex: 1 1 auto;
+  min-width: 120px;
+  padding: 6px 10px;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+.TodoItem .edit-input:focus {
+  border-color: #50dfb4;
+  box-shadow: 0 0 0 2px rgba(80, 223, 180, 0.15);
+}
+
+/* 좁은 화면에서 버튼이 줄바꿈되어 겹치지 않도록 */
+@media (max-width: 480px) {
+  .TodoItem {
+    align-items: flex-start;
+  }
+  .TodoItem .content-wrap,
+  .TodoItem .edit-wrap {
+    flex-wrap: wrap;
+  }
+  .TodoItem .date {
+    order: 2;
+    width: 100%;
+  }
+  .TodoItem .btn-wrap {
+    order: 3;
+    margin-left: auto;
+  }
+}
