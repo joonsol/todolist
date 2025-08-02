@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './css/TodoItem.css'
 
-const TodoItem = ({ todo, updatedChecked, updatedText }) => {
+const TodoItem = ({ todo, updatedChecked, updatedText ,onDelete}) => {
 
     const [editing, setEditing] = useState(false)
     const [text, setText] = useState(todo.text)
@@ -60,7 +60,9 @@ const TodoItem = ({ todo, updatedChecked, updatedText }) => {
                     </div>
                     <div className="btn-wrap">
                         <button className="updateBtn" onClick={startEdit}>수정</button>
-                        <button className="deleteBtn">삭제</button>
+                        <button className="deleteBtn"
+                        onClick={()=>onDelete(todo._id)}
+                        >삭제</button>
                     </div>
                 </div>
             )}
