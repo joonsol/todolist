@@ -7,6 +7,7 @@ import axios from "axios"
 function App() {
   const [todos, setTodos] = useState([])
   const API = `${import.meta.env.VITE_API_URL}/api/todos`
+ console.log(API)
 
   useEffect(() => {
     const fetchTodos = async () => {
