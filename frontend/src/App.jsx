@@ -4,27 +4,27 @@ import TodoEditor from './components/TodoEditor';
 import TodoList from './components/TodoList';
 import React, { useEffect, useState, useMemo } from 'react';
 import axios from "axios"
+import {api,ensureGuestAuth} from './lib/api'
 function App() {
   const [todos, setTodos] = useState([])
-  const API = `${import.meta.env.VITE_API_URL}/api/todos`
+  const API ='/api/todos'
  console.log(API)
 
   useEffect(() => {
-    const fetchTodos = async () => {
+    const init = async () => {
       try {
-        const res = await axios.get(API)
+        await ensureGuestAuth()
 
+        const res= await api.get(API)
+        const data=Array.isArray(res.data)? res.data:res.data.todos??[]
 
-        const data = Array.isArray(res.data) ? res.data : res.data.todos ?? [];
         setTodos(data)
-
-        console.log(data)
 
       } catch (error) {
         console.log('  가져오기 실패', error)
       }
     }
-    fetchTodos()
+    init()
   }, [])
 
   const onCreate = async (todoText) => {
